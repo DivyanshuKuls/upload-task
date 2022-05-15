@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>File Download</title>        
+    </head>
+    <body>
+        <h1>File Download</h1>
+        <button id="viewImage">View Image</button>
+        <br>
+        <form action="/downloadimage" method="get">
+            <br>
+            <button type="submit">Download Image</button>
+        </form>
+        <br><br>
+        <a href="/logout">Log Out</a>
+        <br><br>
+        <div class="image"></div>
+
+        <script>
+            const viewImageBtn = document.getElementById('viewImage')
+            viewImageBtn.addEventListener('click', loadImages)
+            async function loadImages(){
+                const res = await fetch('/viewimage').then(response => response.json())
+                console.log(res)
+                const imageElement = document.querySelector('.image')
+                const img = document.createElement('img')
+                img.src = res.img
+                img.height = '200'
+                imageElement.appendChild(img)
+            }
+
+            
+            
+        </script>
+        
+    </body>
+</html>
